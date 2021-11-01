@@ -81,6 +81,10 @@ class Booking extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
+        if (!this.state.customerInfo.dateOfBirth.length) {
+            alert('Geburtstag wählen')
+        }else{
+
         var booking = this.props.items[this.props.items.length - 1]
         for (var i = 0; i < booking.reservations.length; i++) {
             booking.customerInfo = this.state.customerInfo
@@ -106,6 +110,7 @@ class Booking extends Component {
                 }
             })
     }
+}
 
     render() {
         let ShoppingCart = this.props.items.length ?
