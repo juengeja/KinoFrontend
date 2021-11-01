@@ -9,15 +9,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 import { removeAll } from '../components/actions/storeActions'
+import Loading from '../components/Loading';
 
 class Booking extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            submitButtonType: "submit",
             paymentMethod: "Kreditkarte",
             showSuccessfulPopup: false,
+            showWaitingPopup: false,
             showErrorPopup: this.props.items.length ? false : true,
             selectedDate: new Date('2001-01-01'),
             customerInfo: {
@@ -82,13 +83,13 @@ class Booking extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
+        console.log('hi')
+
         if (!this.state.customerInfo.dateOfBirth.length) {
             alert('Geburtstag wählen')
         }else{
 
-        this.setState({
-            submitButtonType: ""
-        })
+        this.setState({showWaitingPopup: !this.state.showWaitingPopup})
 
         var booking = this.props.items[this.props.items.length - 1]
         for (var i = 0; i < booking.reservations.length; i++) {
@@ -197,10 +198,11 @@ class Booking extends Component {
                             {ShoppingCart}
                             {this.props.items.length ? <h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6> : null}
                             <button className="booking-btn_100" onClick={() => this.props.history.push('/shoppingCart')}>Zurück zum Warenkorb</button>
-                            <button class="booking-btn_100" type={this.state.submitButtonType}>Kostenpflichtig bestellen</button>
+                            <button class="booking-btn_100" type="submit">Kostenpflichtig bestellen</button>
 
                         </div>
                     </form>
+                    {this.state.showWaitingPopup ? <WaitingPopup /> : null}
                     {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
                     {this.state.showErrorPopup ? <ErrorPopup /> : null}
                 </div>
@@ -228,7 +230,7 @@ class SuccessfulPopup extends Component {
             <div className='popup'>
                 <div className='popup_inner'>
                     <h6>Vielen Dank für Ihre Bestellung. Sie werden in Kürze eine Bestätigungs-Email erhalten.</h6>
-                    <Link to='/' className="btn-primary">Zum Startsete</Link>
+                    <Link to='/' className="btn-primary">Zum Startseite</Link>
                 </div>
             </div>
         );
@@ -242,6 +244,19 @@ class ErrorPopup extends Component {
                 <div className='popup_inner'>
                     <h6>Leider ist etwas schiefgelaufen. Bitte versuchen sie es erneut</h6>
                     <Link to='/' className="btn-primary">Zur Startseite</Link>
+                </div>
+            </div>
+        );
+    }
+}
+
+class WaitingPopup extends Component {
+    render() {
+        return (
+            <div className='popup'>
+                <div className='popup_inner'>
+                    <h6>Daten werden verarbeitet</h6>
+                    <Loading />
                 </div>
             </div>
         );
