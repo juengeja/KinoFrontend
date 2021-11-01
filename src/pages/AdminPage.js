@@ -91,7 +91,7 @@ class AdminPage extends Component{
         event.preventDefault();
 
         const movie_json  = {
-            movieId: this.state.movieName.replace(" ", ""),
+            movieId: this.state.movieName.str.split(' ').join(''),
             movieName: this.state.movieName,
             mainGenre: this.state.mainGenre,
             duration: parseInt(this.state.duration),

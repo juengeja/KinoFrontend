@@ -87,7 +87,7 @@ class Booking extends Component {
             booking.paymentMethod = this.state.paymentMethod
         }
 
-        axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
+        axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking, {timeout: 2})
             .then(res => {
                 if (res.data != null) {
 
