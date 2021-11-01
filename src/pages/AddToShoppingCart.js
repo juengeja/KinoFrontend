@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { addToCart, addItem, removeItem } from '../components/actions/storeActions';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import loadingGif from '../images/gif/loading-arrow.gif';
+import loadingGif from '../images/gif/small-loading-arrow.gif';
 
 class AddToShoppingCart extends Component {
   constructor(props) {
