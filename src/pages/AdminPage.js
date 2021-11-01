@@ -90,6 +90,11 @@ class AdminPage extends Component{
     handleMovieSubmit = event => {
         event.preventDefault();
 
+        if (this.state.eventStart === [] || this.state.selectedMovie === null || this.state.selectedEventStart === null) {
+            alert('Nicht alles ausgewählt')
+            this.props.history.push('/adminpage')
+        }
+
         const movie_json  = {
             movieId: this.state.movieName.split(' ').join(''),
             movieName: this.state.movieName,
@@ -107,7 +112,7 @@ class AdminPage extends Component{
     axios.post('http://5.45.107.109:4000/api/admin/createmovie', movie_json)
     .then(res => {
         if (res.data != null) {
-            if (res.data.eventStart !== []) {
+            if (res.data.movieId !== '') {
                 alert('Erfolgreich hinzugefügt')
             } else {
                 alert('Fehler')
