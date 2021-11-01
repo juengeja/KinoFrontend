@@ -90,8 +90,9 @@ class Booking extends Component {
         axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
             .then(res => {
                 if (res.data != null) {
-                    this.handleRemove()
+
                     if (res.data.bookingStatus === "paid") {
+                        this.handleRemove()
                         this.setState({
                             showSuccessfulPopup: !this.state.showSuccessfulPopup
                         })
