@@ -94,7 +94,7 @@ class AdminPage extends Component{
             movieId: this.state.movieName.replace(" ", ""),
             movieName: this.state.movieName,
             mainGenre: this.state.mainGenre,
-            duration: this.state.duration,
+            duration: parseInt(this.state.duration),
             trailer: this.state.trailer,
             actors: [this.state.actors],
             producer: this.state.producer,
@@ -119,7 +119,6 @@ class AdminPage extends Component{
     }
 
     handleChange = (e) => {
-        console.log(e.target.name)
         if (e.target.name === 'is3D'){
             this.setState({
                 is3D: !this.state.is3D
