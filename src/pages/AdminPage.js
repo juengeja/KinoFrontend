@@ -61,6 +61,12 @@ class AdminPage extends Component{
     };
 
     handleShowEventSubmit = event => {
+
+        if (this.state.eventStart === [] || this.state.selectedMovie === null || this.state.selectedEventStart === null) {
+            alert('Nicht alles ausgewählt')
+            this.props.history.push('/adminpage')
+        }
+
         event.preventDefault();
 
         const showEvent_json  = {
@@ -89,11 +95,6 @@ class AdminPage extends Component{
 
     handleMovieSubmit = event => {
         event.preventDefault();
-
-        if (this.state.eventStart === [] || this.state.selectedMovie === null || this.state.selectedEventStart === null) {
-            alert('Nicht alles ausgewählt')
-            this.props.history.push('/adminpage')
-        }
 
         const movie_json  = {
             movieId: this.state.movieName.split(' ').join(''),
