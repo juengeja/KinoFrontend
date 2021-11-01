@@ -61,13 +61,11 @@ class AdminPage extends Component{
     };
 
     handleShowEventSubmit = event => {
-
-        if (this.state.eventStart === [] || this.state.selectedMovie === null || this.state.selectedEventStart === null) {
-            alert('Nicht alles ausgewählt')
-            this.props.history.push('/adminpage')
-        }
-
         event.preventDefault();
+
+        if (!this.state.eventStart.length || this.state.selectedMovie === null || this.state.selectedEventStart === null) {
+            alert('Nicht alles ausgewählt')
+        }else{
 
         const showEvent_json  = {
             showEventID: this.state.selectedMovie.movieId + Date().toLocaleString('de-DE'),
@@ -91,6 +89,7 @@ class AdminPage extends Component{
             alert("Ein Fehler ist aufgetreten")
           }
       })
+    }
     }
 
     handleMovieSubmit = event => {
