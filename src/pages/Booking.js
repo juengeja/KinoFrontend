@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 import { removeAll } from '../components/actions/storeActions'
-import loadingGif from '../images/gif/loading-arrow.gif';
+import loadingGif from '../images/gif/small-loading-arrow.gif';
 
 class Booking extends Component {
     constructor(props) {
