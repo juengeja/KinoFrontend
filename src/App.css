@@ -1052,6 +1052,26 @@ text-align: center;
 	margin-left: auto
 }
 
+.login-Container .react-datepicker-wrapper {
+  width: 100%;
+  min-height: 30px;
+  border: 0;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  margin-bottom: 4%;
+  border-radius: 4px;
+}
+
+.login-Container .react-datepicker-wrapper input {
+  width: 45%;
+  min-height: 30px;
+  border: 0;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  border-radius: 4px;
+  text-align: center
+}
+
 .login_input {
   width: 45%;
   min-height: 30px;
@@ -1060,4 +1080,5 @@ text-align: center;
   letter-spacing: .15rem;
   margin-bottom: 4%;
   border-radius: 4px;
+  text-align: center
 }

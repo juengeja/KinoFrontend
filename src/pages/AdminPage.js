@@ -43,7 +43,7 @@ class AdminPage extends Component{
                 })
             });
 
-        axios.get('http://5.45.107.109:4000/api/seatingtemplates/indigobw')
+        axios.get('http://5.45.107.109:4000/api/seatingtemplates/IndigoBW')
             .then((response) => {
                 let seatingTemplates = this.formatData(response.data);
                 this.setState({
@@ -187,14 +187,14 @@ class AdminPage extends Component{
                 <div>
                     <label>Movie</label>
                     <br/>
-                    <select name="selectedMovie" onChange={this.handleChange}>      
+                    <select name="selectedMovie" class="login_input" onChange={this.handleChange}>      
                         {movieList} 
                     </select>
                 </div>
                 <div>
                     <label>Seating Template</label>
                     <br/>
-                    <select name="selectedTemplate"  onChange={this.handleChange}>      
+                    <select name="selectedTemplate" class="login_input" onChange={this.handleChange}>      
                         {seatingTemplates}  
                     </select>
                 </div>
@@ -211,6 +211,8 @@ class AdminPage extends Component{
                 <button  class="booking-btn" type="submit">ShowEvent erstellen</button>
                 </form>
 
+                <br />
+                <br />
 
                 <form onSubmit = {this.handleMovieSubmit}>
                 <h6>Movie hinzufügen</h6>
