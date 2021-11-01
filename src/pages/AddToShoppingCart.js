@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { addToCart, addItem, removeItem } from '../components/actions/storeActions';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import loadingGif from '../images/gif/loading-arrow.gif';
 
 class AddToShoppingCart extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class AddToShoppingCart extends Component {
       cart_entry_eventID: '',
       showSuccessfulPopup: false,
       showErrorPopup: false,
+      showWaitingPopup: false,
       error: false,
       bookedSeats: []
     };
@@ -48,6 +50,8 @@ class AddToShoppingCart extends Component {
     if (entry.seats === '') {
       alert('Es wurde kein Sitzplatz ausgewählt')
     } else {
+
+      this.setState({showWaitingPopup: !this.state.showWaitingPopup})
 
       const seat_reservation_post = {
         bookingInfo: entry.bookingID,
@@ -91,6 +95,8 @@ class AddToShoppingCart extends Component {
     if (entry.seats === '') {
       alert('Es wurde kein Sitzplatz ausgewählt')
     } else {
+
+      this.setState({showWaitingPopup: !this.state.showWaitingPopup})
 
       const seat_reservation_post = {
         quickCheckout: true,
@@ -304,6 +310,7 @@ class AddToShoppingCart extends Component {
             </>
           }
 
+          {this.state.showWaitingPopup ? <WaitingPopup /> : null}
           {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
           {this.state.showErrorPopup ? <ErrorPopup /> : null}
         </div>
@@ -358,6 +365,21 @@ class ErrorPopup extends Component {
         </div>
       </div>
     );
+  }
+}
+
+class WaitingPopup extends Component {
+  render() {
+      return (
+          <div className='popup'>
+              <div className='popup_inner'>
+                  <div className="loading" data-testid="loading-1">
+                        <h4>Daten werden verarbeitet...</h4>
+                        <img src={loadingGif} alt="" />
+                    </div>
+              </div>
+          </div>
+      );
   }
 }
 

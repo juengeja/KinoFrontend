@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 import { removeAll } from '../components/actions/storeActions'
-import Loading from '../components/Loading';
+import loadingGif from '../images/gif/loading-arrow.gif';
 
 class Booking extends Component {
     constructor(props) {
@@ -255,8 +255,10 @@ class WaitingPopup extends Component {
         return (
             <div className='popup'>
                 <div className='popup_inner'>
-                    <h6>Daten werden verarbeitet</h6>
-                    <Loading />
+                    <div className="loading" data-testid="loading-1">
+                        <h4>Daten werden verarbeitet...</h4>
+                        <img src={loadingGif} alt="" />
+                    </div>
                 </div>
             </div>
         );
