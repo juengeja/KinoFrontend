@@ -42,7 +42,7 @@ class AdminPage extends Component{
                 })
             });
 
-        axios.get('http://5.45.107.109:4000/api/seatingTemplates')
+        axios.get('http://5.45.107.109:4000/api/seatingtemplates')
             .then((response) => {
                 let seatingTemplates = this.formatData(response.data);
                 this.setState({
