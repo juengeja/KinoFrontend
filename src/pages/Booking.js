@@ -15,6 +15,7 @@ class Booking extends Component {
         super(props);
 
         this.state = {
+            submitButtonType: "submit",
             paymentMethod: "Kreditkarte",
             showSuccessfulPopup: false,
             showErrorPopup: this.props.items.length ? false : true,
@@ -85,13 +86,17 @@ class Booking extends Component {
             alert('Geburtstag wählen')
         }else{
 
+        this.setState({
+            submitButtonType: ""
+        })
+
         var booking = this.props.items[this.props.items.length - 1]
         for (var i = 0; i < booking.reservations.length; i++) {
             booking.customerInfo = this.state.customerInfo
             booking.paymentMethod = this.state.paymentMethod
         }
 
-        axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking, {timeout: 2000})
+        axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
             .then(res => {
                 if (res.data != null) {
 
@@ -192,7 +197,7 @@ class Booking extends Component {
                             {ShoppingCart}
                             {this.props.items.length ? <h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6> : null}
                             <button className="booking-btn_100" onClick={() => this.props.history.push('/shoppingCart')}>Zurück zum Warenkorb</button>
-                            <button class="booking-btn_100" type="submit">Kostenpflichtig bestellen</button>
+                            <button class="booking-btn_100" type={this.state.submitButtonType}>Kostenpflichtig bestellen</button>
 
                         </div>
                     </form>

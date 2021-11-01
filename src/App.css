@@ -324,6 +324,7 @@ h6 {
 }
 .img-container img {
   width: 100%;
+  min-height: 100%;
   display: block;
   transition: var(--mainTransition);
 }
