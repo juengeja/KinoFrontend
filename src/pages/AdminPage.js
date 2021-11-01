@@ -107,7 +107,7 @@ class AdminPage extends Component{
     axios.post('http://5.45.107.109:4000/api/admin/createmovie', movie_json)
     .then(res => {
         if (res.data != null) {
-            if (res.data.successful) {
+            if (res.data.movieId !== '') {
                 alert('Erfolgreich hinzugefügt')
             } else {
                 alert('Fehler')
