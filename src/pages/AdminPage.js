@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner'
 import { connect } from 'react-redux';
+import { changeState} from '../components/actions/storeActions';
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -42,7 +43,7 @@ class AdminPage extends Component{
                 })
             });
 
-        axios.get('http://5.45.107.109:4000/api/seatingtemplates')
+        axios.get('http://5.45.107.109:4000/api/seatingtemplates/indigobw')
             .then((response) => {
                 let seatingTemplates = this.formatData(response.data);
                 this.setState({
@@ -154,6 +155,11 @@ class AdminPage extends Component{
 
     }
 
+    handleLogout = () =>{
+        this.props.changeState()
+        this.props.history.push('/login')
+    }
+
     render(){
     if(!this.props.loginState) {
         this.props.history.push('/login')
@@ -256,6 +262,7 @@ class AdminPage extends Component{
                        
                 <button  class="booking-btn" type="submit">Movie erstellen</button>
                 </form>
+                <button  class="booking-btn" onClick={this.handleLogout}>Abmelden</button>
             </div>
         </>
     );
@@ -267,4 +274,10 @@ const mapStateToProps = (state) => {
         loginState: state.loginState
     }
 }
-export default connect(mapStateToProps)(AdminPage)
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        changeState: () => { dispatch(changeState()) },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)

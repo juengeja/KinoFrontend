@@ -45,7 +45,7 @@ const cartReducer= (state = initState,action)=>{
     if(action.type === CHANGE_STATE){
 
         return{
-            loginState: true,
+            loginState: !state.loginState,
         }    
     }
     
