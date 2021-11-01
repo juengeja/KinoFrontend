@@ -35,7 +35,7 @@ class AdminPage extends Component{
     };
 
     componentDidMount() {
-        axios.get('http://5.45.107.109:4000/api/dropdown/movies')
+        axios.get('http://5.45.107.109:4000/api/dropdown/movies/IndigoBW')
             .then((response) => {
                 let movies = this.formatData(response.data);
                 this.setState({
