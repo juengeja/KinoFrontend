@@ -1068,6 +1068,7 @@ text-align: center;
   border: 0;
   font-size: 1rem;
   letter-spacing: .15rem;
+  margin-top: 1%;
   border-radius: 4px;
   text-align: center
 }
@@ -1078,6 +1079,19 @@ text-align: center;
   border: 0;
   font-size: 1rem;
   letter-spacing: .15rem;
+  margin-top: 1%;
+  margin-bottom: 4%;
+  border-radius: 4px;
+  text-align: center
+}
+
+.admin_checkbox {
+  width: 45%;
+  min-height: 25px;
+  border: 0;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  margin-top: 1%;
   margin-bottom: 4%;
   border-radius: 4px;
   text-align: center
