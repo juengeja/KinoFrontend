@@ -91,7 +91,7 @@ class AdminPage extends Component{
         event.preventDefault();
 
         const movie_json  = {
-            movieId: this.state.movieName.str.split(' ').join(''),
+            movieId: this.state.movieName.split(' ').join(''),
             movieName: this.state.movieName,
             mainGenre: this.state.mainGenre,
             duration: parseInt(this.state.duration),
@@ -107,7 +107,7 @@ class AdminPage extends Component{
     axios.post('http://5.45.107.109:4000/api/admin/createmovie', movie_json)
     .then(res => {
         if (res.data != null) {
-            if (res.data.movieId !== '') {
+            if (res.data.eventStart !== []) {
                 alert('Erfolgreich hinzugefügt')
             } else {
                 alert('Fehler')
