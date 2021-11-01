@@ -104,7 +104,7 @@ class AdminPage extends Component{
         }
     console.log(movie_json)
 
-    axios.post('http://5.45.107.109:4000/api/admin/createsmovie', movie_json)
+    axios.post('http://5.45.107.109:4000/api/admin/createmovie', movie_json)
     .then(res => {
         if (res.data != null) {
             if (res.data.successful) {
