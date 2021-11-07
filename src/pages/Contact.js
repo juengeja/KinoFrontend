@@ -7,8 +7,8 @@ import Title from '../components/Title';
 export default function Contact() {
     return (
         <>
-            <Hero hero="programHero">
-                <Banner title="Kontakt" />
+            <Hero hero="infoHero">
+                <Banner title="Info" />
             </Hero>
 
             <section className="contact">

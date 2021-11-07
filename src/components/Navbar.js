@@ -35,7 +35,7 @@ import { connect } from 'react-redux';
                         <Link to="/gastro">Gastro</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Kontakt</Link>
+                        <Link to="/contact">Info</Link>
                     </li>
                     <li>
                         <Link to="/corona">Infektionsschutz</Link>

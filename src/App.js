@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import AdminPage from './pages/AdminPage'
 import Corona from './pages/Corona'
 import Gastro from './pages/Gastro'
+import Payment from './pages/paymentMethod'
 
 import {Route, Switch} from 'react-router-dom';
 
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/adminpage" component={AdminPage}/>
         <Route exact path="/corona" component={Corona}/>
         <Route exact path="/gastro" component={Gastro}/>
+        <Route exact path="/payment" component={Payment}/>
         <Route component={Error} />
       </Switch>
   </>

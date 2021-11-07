@@ -72,7 +72,7 @@ class ShoppingCart extends Component {
         let showRecipe = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ? <><h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6><Recipe /></> : null
         return (
             <>
-                <Hero hero='programHero'>
+                <Hero hero='cartHero'>
                     <Banner title="Warenkorb"></Banner>
                 </Hero>
                 <section class="movielist">

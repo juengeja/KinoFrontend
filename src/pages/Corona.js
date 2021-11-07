@@ -3,10 +3,10 @@ import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
 
-export default function Contact() {
+export default function Corona() {
     return (
         <>
-            <Hero hero="programHero">
+            <Hero hero="coronaHero">
                 <Banner title="Infektionsschutz" />
             </Hero>
 

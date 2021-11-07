@@ -21,7 +21,8 @@ export default class Services extends Component {
             {
                 icon:<FaBtc/>,
                 title:"Zahlungsweisen",
-                info:'Wir bieten dir vielfältige Zahlungsarten an, damit der Kaufvorgang für dich so angenehm wie möglich ist.'
+                info:'Wir bieten dir vielfältige Zahlungsarten an, damit der Kaufvorgang für dich so angenehm wie möglich ist.',
+                link:'/payment'
             }
         ]
     };

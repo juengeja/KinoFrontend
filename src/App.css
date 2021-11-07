@@ -169,7 +169,11 @@ h6 {
 /* end of navbar */
 /* Hero */
 .defaultHero,
-.programHero{
+.programHero,
+.gastroHero,
+.infoHero,
+.coronaHero,
+.cartHero{
   min-height: calc(100vh - 66px);
   background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
   display: flex;
@@ -177,9 +181,26 @@ h6 {
   justify-content: center;
 }
 .programHero {
-  background-image: url("./images/defaultBcg.jpeg");
+  background-image: url("./images/booking-banner.jpg");
   min-height: 40vh;
 }
+.gastroHero {
+  background-image: url("./images/gastro-banner.JPG");
+  min-height: 40vh;
+}
+.infoHero {
+  background-image: url("./images/info-banner.jpg");
+  min-height: 40vh;
+}
+.coronaHero {
+  background-image: url("./images/corona-banner.JPG");
+  min-height: 40vh;
+}
+.cartHero {
+  background-image: url("./images/cart-banner.jpg");
+  min-height: 40vh;
+}
+
 
 /* End of Hero */
 /* Banner */
@@ -1111,4 +1132,73 @@ text-align: center;
 .contact {
   padding: 5rem;
   text-align: center;
+}
+
+/*gastro */
+
+.gastro {
+  padding: 5rem;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.gastro-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+  
+.gastro-table thead tr {
+  background-color: var(--mainBlack);
+  color: #ffffff;
+  text-align: left;
+}
+
+
+.gastro-table th,
+.gastro-table td {
+    padding: 12px 20px;
+}
+
+.gastro-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.gastro-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.gastro-table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--mainBlack);
+}
+
+.gastro-menus {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 50px;
+}
+.gastro-menus img{
+width: 100%;
+}
+
+/* payment */
+.payment {
+  padding: 5rem;
+  text-align: center;
+}
+
+.payments {
+  text-align: left;
+  padding: 5rem;
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
