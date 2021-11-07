@@ -6,6 +6,8 @@ import Services from '../components/Services';
 import FeaturedMovies from '../components/FeaturedMovies';
 import Slideshow from '../components/slideshow';
 
+//test
+
 export default function Home() {
     return (
         <>
