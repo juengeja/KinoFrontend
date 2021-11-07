@@ -148,8 +148,7 @@ class Booking extends Component {
             <>
 
                 <Hero hero='programHero'>
-                    <Banner title="Buchung">
-                    </Banner>
+                    <Banner title="Buchung" />
                 </Hero>
 
                 <div className="booking-wrapper">

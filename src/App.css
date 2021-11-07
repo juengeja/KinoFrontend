@@ -169,7 +169,7 @@ h6 {
 /* end of navbar */
 /* Hero */
 .defaultHero,
-.programHero {
+.programHero{
   min-height: calc(100vh - 66px);
   background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
   display: flex;
@@ -177,12 +177,14 @@ h6 {
   justify-content: center;
 }
 .programHero {
-  background-image: url("./images/ProgrammBanner.jpeg");
+  background-image: url("./images/defaultBcg.jpeg");
   min-height: 40vh;
 }
+
 /* End of Hero */
 /* Banner */
 .banner {
+  
   display: inline-block;
   background: rgba(0, 0, 0, 0.5);
   color: var(--mainWhite);
@@ -1096,4 +1098,17 @@ text-align: center;
   margin-bottom: 4%;
   border-radius: 4px;
   text-align: center
+}
+
+/*home*/
+
+.home {
+  padding: 5rem;
+  background: var(--darkGrey);
+  text-align: center;
+}
+
+.contact {
+  padding: 5rem;
+  text-align: center;
 }
