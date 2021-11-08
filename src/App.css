@@ -995,8 +995,8 @@ margin-bottom: 0em;
   padding: 0px 25px;
 }
 .seat{
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 50% 50% 0px 0px;
   margin: 1px;
   cursor: pointer;
@@ -1044,8 +1044,8 @@ margin-bottom: 0em;
 }
 
 .bookedseat{
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 50% 50% 0px 0px;
   margin: 1px;
   cursor: pointer;
