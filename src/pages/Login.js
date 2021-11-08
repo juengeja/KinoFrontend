@@ -31,8 +31,7 @@ class Login extends React.Component{
             'username': this.state.username,
             'password': this.state.password
         }
-        console.log(login_json)
-        
+
         axios.put('http://5.45.107.109:4000/api/login', login_json)
         .then(res => {
           if (res.data != null) {

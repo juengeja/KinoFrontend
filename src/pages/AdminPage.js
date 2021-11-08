@@ -74,8 +74,6 @@ class AdminPage extends Component{
             eventStart: this.state.eventStart,
             is3D: this.state.is3D
         }
-    console.log(showEvent_json)
-
 
     axios.post('http://5.45.107.109:4000/api/admin/createshowevent', showEvent_json)
     .then(res => {
@@ -107,7 +105,6 @@ class AdminPage extends Component{
             img: this.state.img,
             description: this.state.description
         }
-    console.log(movie_json)
 
     axios.post('http://5.45.107.109:4000/api/admin/createmovie', movie_json)
     .then(res => {

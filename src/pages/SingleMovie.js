@@ -8,7 +8,6 @@ import Title from '../components/Title';
 export default class SingleMovie extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = {
             slug: this.props.match.params.slug,
         };

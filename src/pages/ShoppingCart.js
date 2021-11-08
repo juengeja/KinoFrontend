@@ -11,7 +11,6 @@ class ShoppingCart extends Component {
 
     
     removeReservtion(reservationID) {
-        console.log(reservationID)
     let url = 'http://5.45.107.109:4000/api/remove/' + reservationID;
     axios.put(url)
     .then(res => {

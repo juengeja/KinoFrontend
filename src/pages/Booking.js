@@ -83,8 +83,6 @@ class Booking extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        console.log('hi')
-
         if (!this.state.customerInfo.dateOfBirth.length) {
             alert('Geburtstag wählen')
         }else{
@@ -100,7 +98,7 @@ class Booking extends Component {
         axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
             .then(res => {
                 if (res.data != null) {
-
+                        console.log(res.data)
                     if (res.data.bookingStatus === "paid") {
                         this.handleRemove()
                         this.setState({
