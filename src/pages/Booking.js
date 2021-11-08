@@ -185,8 +185,11 @@ class Booking extends Component {
                             <div class="input-container">
                                 <button className={this.state.paymentMethod === "Kreditkarte" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Kreditkarte" onClick={this.handleChange}>Kreditkarte</button>
                                 <button className={this.state.paymentMethod === "PayPal" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="PayPal" onClick={this.handleChange}>PayPal</button>
-                                <button className={this.state.paymentMethod === "Rechnung" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Rechnung" onClick={this.handleChange}>Rechnung</button>
-                                <button className={this.state.paymentMethod === "Bar" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Bar" onClick={this.handleChange}>Bar</button>
+                                <button className={this.state.paymentMethod === "Klarna" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Klarna" onClick={this.handleChange}>Klarna</button>
+                                <button className={this.state.paymentMethod === "Sofortuberweisung" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Sofortuberweisung" onClick={this.handleChange}>Sofortüberweisung</button>
+                                <button className={this.state.paymentMethod === "Giropay" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Giropay" onClick={this.handleChange}>Giropay</button>
+                                <button className={this.state.paymentMethod === "Lastschrift" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Lastschrift" onClick={this.handleChange}>Lastschrift</button>
+                                <button className={this.state.paymentMethod === "Vorkasse" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Vorkasse" onClick={this.handleChange}>Vorkasse</button>
                             </div>
 
                         </div>

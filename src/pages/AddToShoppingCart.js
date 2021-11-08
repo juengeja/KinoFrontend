@@ -279,7 +279,7 @@ class AddToShoppingCart extends Component {
 
           <p>
             <div className="abstand">hallo</div>
-            <div className="row">Frei: <Seat seatColor="seat-grey" /> Belegt: <Seat seatColor="seat-black" /> Gewählt: <Seat seatColor="seat-red" /></div>
+            <div className="legende">Frei: <Seat seatColor="seat-grey" /> Belegt: <Seat seatColor="seat-black" /> Gewählt: <Seat seatColor="seat-red" /></div>
             <div className="abstand">hallo</div>
           </p>
         </>
