@@ -107,6 +107,7 @@ class Booking extends Component {
                             showSuccessfulPopup: !this.state.showSuccessfulPopup
                         })
                     } else {
+                        this.handleRemove()
                         this.setState({
                             showErrorPopup: !this.state.showErrorPopup
                         })
