@@ -1,10 +1,15 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import ContactIcons from '../components/ContactIcons';
 import Title from '../components/Title';
 
 export default function Contact() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <>
             <Hero hero="infoHero">

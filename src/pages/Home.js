@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,11 @@ import FeaturedMovies from '../components/FeaturedMovies';
 import Slideshow from '../components/slideshow';
 
 export default function Home() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <>
             <Hero>
