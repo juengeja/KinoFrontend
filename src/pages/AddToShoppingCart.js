@@ -344,6 +344,8 @@ class SuccessfulPopup extends Component {
           <h6>Der Film wurde erfolgreich zum Warenkorb hinzugefügt!</h6>
           <Link to='/shoppingCart' className="btn-primary">Zum Warenkorb</Link>
           <h3 />
+          <Link to='/gastro' className="btn-primary">Menü hinzufügen</Link>
+          <h3 />
           <Link to='/program' className="btn-primary">Weiteren Film hinzufügen</Link>
         </div>
       </div>

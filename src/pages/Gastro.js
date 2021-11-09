@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
+import {Link} from 'react-router-dom';
 
 import M1 from "../images/Menu (1).jpg";
 import M2 from"../images/Menu (2).png";
 import M3 from"../images/Menu (3).png";
-import M4 from"../images/Menu (4).png";
 import M5 from"../images/Menu (5).png";
+import { connect } from 'react-redux';
 
-export default class Gastro extends Component {
+class Gastro extends Component {
     state={
         food:[
             {
@@ -89,7 +90,23 @@ export default class Gastro extends Component {
         ],
 
         menus:[
-            M1,M2,M3,M4,M5
+            {
+                img:  M1,
+                name: ''
+            },
+            {
+                img:M2,
+                name: ''
+            },
+            {
+                img: M3,
+                name: ''
+            },
+            {
+                img: M5,
+                name: ''
+            },
+
         ]
     };
 
@@ -98,6 +115,13 @@ export default class Gastro extends Component {
       }
 
 render(){
+
+    let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ?
+    (
+      <button className="btn-primary gastro-menu-link" onClick="">Hinzufügen</button>    
+    )
+    : null
+
     return (
         <>
             <Hero hero="gastroHero">
@@ -185,7 +209,12 @@ render(){
                 <div className="gastro-menus">
                     {this.state.menus.map(item => {
                         return (
-                            <img src={item} />
+                            <>
+                            <div className="gastro-menus-container">
+                                <img src={item.img} />
+                                {menuAddButton}
+                            </div>
+                            </>
                         );
                     })}
                 </div>
@@ -196,3 +225,11 @@ render(){
     );
 }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        items: state.addedItems,
+    }
+}
+
+export default connect(mapStateToProps)(Gastro)
