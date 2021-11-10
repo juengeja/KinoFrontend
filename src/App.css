@@ -810,7 +810,7 @@ text-align: center;
   .booking-wrapper {
     width: 70%;
     background: url(./images/booking-bg.jpg) no-repeat;
-    background-size: 100%; 
+    background-size: 120%; 
   }
 }
 

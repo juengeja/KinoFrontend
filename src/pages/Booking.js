@@ -124,14 +124,17 @@ class Booking extends Component {
 
                     let seats = reservation.seats.join(', ')
                     let splitSeats = seats.split('Astra').join('')
+                    let splitedDate = reservation.eventStart.split('T')
+                    let Date = splitedDate[0].split('-')
+                    let newDate = Date[2] + "." + Date[1] + "." + Date[0] + " " + splitedDate[1] + " Uhr"
 
                     return (
                         <>
                             <li class="booking-shoppingcart"  >
                                 <div className="booking-cart-entry-container">
                                     <h6 className="booking_title">{reservation.movieName}</h6>
-                                    <h6>{reservation.eventStart}</h6>
-                                    <h6>Gewählte Sitze: {splitSeats}</h6>
+                                    <h6>{newDate}</h6>
+                                    <h6>Sitzplatz: {splitSeats}</h6>
                                 </div>
                             </li>
                         </>
@@ -185,7 +188,7 @@ class Booking extends Component {
                                 <button className={this.state.paymentMethod === "Kreditkarte" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Kreditkarte" onClick={this.handleChange}>Kreditkarte</button>
                                 <button className={this.state.paymentMethod === "PayPal" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="PayPal" onClick={this.handleChange}>PayPal</button>
                                 <button className={this.state.paymentMethod === "Klarna" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Klarna" onClick={this.handleChange}>Klarna</button>
-                                <button className={this.state.paymentMethod === "Sofortuberweisung" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Sofortuberweisung" onClick={this.handleChange}>Sofortüberweisung</button>
+                                <button className={this.state.paymentMethod === "Klarna" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Klarna" onClick={this.handleChange}>Klarna</button>
                                 <button className={this.state.paymentMethod === "Giropay" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Giropay" onClick={this.handleChange}>Giropay</button>
                                 <button className={this.state.paymentMethod === "Lastschrift" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Lastschrift" onClick={this.handleChange}>Lastschrift</button>
                                 <button className={this.state.paymentMethod === "Vorkasse" ? "booking-btn" : "booking-btn-unselected"} name="paymentMethod" type="button" value="Vorkasse" onClick={this.handleChange}>Vorkasse</button>

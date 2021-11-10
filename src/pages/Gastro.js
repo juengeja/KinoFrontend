@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
+import { addToCart, addItem } from '../components/actions/storeActions';
 
 import M1 from "../images/Menu (1).jpg";
 import M2 from"../images/Menu (2).png";
@@ -92,19 +93,19 @@ class Gastro extends Component {
         menus:[
             {
                 img:  M1,
-                name: ''
+                name: 'Kiddy Pack'
             },
             {
                 img:M2,
-                name: ''
+                name: 'Partner Menu'
             },
             {
                 img: M3,
-                name: ''
+                name: 'Bestseller Menu'
             },
             {
                 img: M5,
-                name: ''
+                name: 'Blockbuster Menu'
             },
 
         ]
@@ -114,13 +115,61 @@ class Gastro extends Component {
         window.scrollTo(0, 0)
       }
 
+    handleAdd = (e) =>{
+      
+            axios.post('http://5.45.107.109:4000/api/menue', e.target.value)
+              .then(res => {
+                if (res.data != null) {
+      
+                  if (res.data.bookingStatus === "reserved") {
+                    
+                    if (!this.props.items.length) {
+                      
+                      let entry = res.data
+                      this.props.addItem(entry);
+                      this.props.addToCart(entry.id);
+                    } else {
+                      this.props.items[0] = res.data
+                      this.props.addToCart(this.props.items[0].id);
+                    }
+                    
+                    this.props.history.push('/shoppingCart')
+                  } else {
+                    alert("Ein Fehler ist aufgetreten")
+                  }
+                } else {
+                  alert("Ein Fehler ist aufgetreten")
+                }
+              })
+    }
+
 render(){
 
     let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ?
     (
-      <button className="btn-primary gastro-menu-link" onClick="">Hinzufügen</button>    
+        this.state.menus.map(item => {
+            return (
+                <>
+                <div className="gastro-menus-container">
+                    <img src={item.img} />
+                    <button className="btn-primary gastro-menu-link" onClick={this.handleAdd} value={item.name}>Hinzufügen</button>   
+                </div>
+                </>
+            );
+        })   
     )
-    : null
+    : 
+    (
+        this.state.menus.map(item => {
+            return (
+                <>
+                <div className="gastro-menus-container">
+                    <img src={item.img} />
+                </div>
+                </>
+            );
+        })
+    )
 
     return (
         <>
@@ -207,16 +256,7 @@ render(){
                 <Title title="Menüs" />
 
                 <div className="gastro-menus">
-                    {this.state.menus.map(item => {
-                        return (
-                            <>
-                            <div className="gastro-menus-container">
-                                <img src={item.img} />
-                                {menuAddButton}
-                            </div>
-                            </>
-                        );
-                    })}
+                    {menuAddButton}
                 </div>
             </section>
 
@@ -231,5 +271,12 @@ const mapStateToProps = (state) => {
         items: state.addedItems,
     }
 }
+const mapDispatchToProps = (dispatch) => {
 
-export default connect(mapStateToProps)(Gastro)
+    return {
+      addToCart: (id) => { dispatch(addToCart(id)) },
+      addItem: (id) => { dispatch(addItem(id)) },
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(Gastro)

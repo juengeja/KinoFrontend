@@ -167,7 +167,6 @@ class AddToShoppingCart extends Component {
 
     const { movieName } = movie;
 
-    //Change Hardcoded values 
     var tempEntry = { id: this.props.items.length, bookingID: null, reservationID: Date().toLocaleString('de-DE'), eventID: this.state.cart_entry_eventID, seats: '' }
 
     tempEntry.bookingID = this.props.items.length ? this.props.items[0].bookingID : null
@@ -298,7 +297,10 @@ class AddToShoppingCart extends Component {
           <h6>Bitte eine Vorstellung auswählen:</h6>
 
           {this.state.events.map((item) => {
-            return <button className={this.state.cart_entry_eventStart === item.eventStart ? "event-btn" : "event-btn-unselected"} value={item.eventStart} onClick={() => { this.handleEventPicker(item) }}>{item.eventStart}</button>
+            let splitedDate = item.eventStart.split('T')
+            let Date = splitedDate[0].split('-')
+            let newDate = Date[2] + "." + Date[1] + "." + Date[0] + " " + splitedDate[1] + " Uhr"
+            return <button className={this.state.cart_entry_eventStart === item.eventStart ? "event-btn" : "event-btn-unselected"} value={item.eventStart} onClick={() => { this.handleEventPicker(item) }}>{newDate}</button>
           })}
 
           {this.state.cart_entry_eventID === '' ? null :
