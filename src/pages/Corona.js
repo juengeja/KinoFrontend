@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
+import ScrollButton from '../components/ScrollButton';
 
 export default function Corona() {
 
@@ -27,7 +28,7 @@ export default function Corona() {
                 Zur Vermeidung von Wartezeiten buche bitte dein Ticket online! Der Preis ist derselbe wie an der Kinokasse!
                 </h6>
             </section>
-
+            <ScrollButton />
         </>
     );
 }

@@ -7,6 +7,7 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
+import ScrollButton from '../components/ScrollButton';
 
 class AdminPage extends Component{
 
@@ -268,6 +269,7 @@ class AdminPage extends Component{
                 </form>
                 <button  class="booking-btn" onClick={this.handleLogout}>Abmelden</button>
             </div>
+            <ScrollButton />
         </>
     );
     }

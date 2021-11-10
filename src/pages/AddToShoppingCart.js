@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {HashLink} from 'react-router-hash-link';
 import loadingGif from '../images/gif/small-loading-arrow.gif';
+import ScrollButton from '../components/ScrollButton';
 
 class AddToShoppingCart extends Component {
   constructor(props) {
@@ -318,6 +319,7 @@ class AddToShoppingCart extends Component {
           {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
           {this.state.showErrorPopup ? <ErrorPopup /> : null}
         </div>
+        <ScrollButton />
       </>
     );
   }

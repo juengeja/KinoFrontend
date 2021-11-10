@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Services from '../components/Services';
 import FeaturedMovies from '../components/FeaturedMovies';
 import Slideshow from '../components/slideshow';
+import ScrollButton from '../components/ScrollButton';
 
 export default function Home() {
 
@@ -47,6 +48,7 @@ export default function Home() {
             <FeaturedMovies />
             <Services />
             <Slideshow />
+            <ScrollButton />
         </>
     );
 }

@@ -1407,3 +1407,14 @@ width: 100%;
   }
 }
 /*End of Payment*/
+/* Scroll Button*/
+.scrollButton{
+  color: var(--primaryColor);
+  font-size: 2.5rem;
+  position: fixed;
+  bottom: 20px; 
+  right: 30px; 
+  z-index: 99; 
+cursor: pointer;
+}
+/* End of Scroll Button */

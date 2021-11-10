@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 import { removeAll } from '../components/actions/storeActions'
 import loadingGif from '../images/gif/small-loading-arrow.gif';
+import ScrollButton from '../components/ScrollButton';
 
 class Booking extends Component {
     constructor(props) {
@@ -214,6 +215,7 @@ class Booking extends Component {
                     {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
                     {this.state.showErrorPopup ? <ErrorPopup /> : null}
                 </div>
+                <ScrollButton />
             </>
         );
     }

@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import Title from '../components/Title';
 import axios from 'axios';
 import { addToCart, addItem } from '../components/actions/storeActions';
+import ScrollButton from '../components/ScrollButton';
 
 import M1 from "../images/Menu (1).jpg";
 import M2 from"../images/Menu (2).png";
@@ -259,7 +260,7 @@ render(){
                 </div>
             </section>
 
-
+          <ScrollButton />
         </>
     );
 }

@@ -4,6 +4,7 @@ import { changeState} from '../components/actions/storeActions';
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import axios from 'axios';
+import ScrollButton from '../components/ScrollButton';
 
 class Login extends React.Component{
 
@@ -66,6 +67,7 @@ class Login extends React.Component{
                 <button  class="booking-btn" type="submit">Login</button>
                 </form>
             </div>
+            <ScrollButton />
             </>
         )
     }

@@ -6,6 +6,7 @@ import Recipe from '../components/Recipe'
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import axios from 'axios';
+import ScrollButton from '../components/ScrollButton';
 
 class ShoppingCart extends Component {
 
@@ -94,6 +95,7 @@ class ShoppingCart extends Component {
                         </div>
                     </div>
                 </section>
+                <ScrollButton />
             </>
         )
     }

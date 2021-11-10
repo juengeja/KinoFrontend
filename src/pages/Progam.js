@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import ProgramContainer from '../components/ProgramContainer';
+import ScrollButton from '../components/ScrollButton';
 
 const Program = () => {
 
@@ -15,6 +16,7 @@ const Program = () => {
             <Banner title="Programm" />
         </Hero>
         <ProgramContainer />
+        <ScrollButton />
     </>
     );
 };

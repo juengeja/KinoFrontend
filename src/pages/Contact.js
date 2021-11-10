@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import ContactIcons from '../components/ContactIcons';
 import Title from '../components/Title';
+import ScrollButton from '../components/ScrollButton';
 
 export default function Contact() {
 
@@ -52,6 +53,7 @@ export default function Contact() {
                     aria-hidden="false"
                     tabIndex="0" />
             </section>
+            <ScrollButton />
         </>
     );
 }

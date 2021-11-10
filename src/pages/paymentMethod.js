@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
 import payment from '../images/payment.png'
+import ScrollButton from '../components/ScrollButton';
 
 export default function paymentMethod() {
 
@@ -60,7 +61,7 @@ export default function paymentMethod() {
                 <img src={payment} />
 
             </section>
-
+            <ScrollButton />
         </>
     );
 }
