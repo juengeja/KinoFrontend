@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { addToCart, addItem, removeItem } from '../components/actions/storeActions';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {HashLink} from 'react-router-hash-link';
 import loadingGif from '../images/gif/small-loading-arrow.gif';
 
 class AddToShoppingCart extends Component {
@@ -24,8 +25,9 @@ class AddToShoppingCart extends Component {
       bookedSeats: []
     };
   }
-
+  
   componentDidMount() {
+    window.scrollTo(0, 0)
     let url = 'http://5.45.107.109:4000/api/moviedata/showeventdates/' + this.state.slug;
     axios.get(url)
       .then((response) => {
@@ -346,7 +348,7 @@ class SuccessfulPopup extends Component {
           <h6>Der Film wurde erfolgreich zum Warenkorb hinzugefügt!</h6>
           <Link to='/shoppingCart' className="btn-primary">Zum Warenkorb</Link>
           <h3 />
-          <Link to='/gastro' className="btn-primary">Menü hinzufügen</Link>
+          <HashLink to='/gastro/#menues' className="btn-primary">Menü hinzufügen</HashLink>
           <h3 />
           <Link to='/program' className="btn-primary">Weiteren Film hinzufügen</Link>
         </div>

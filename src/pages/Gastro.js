@@ -176,7 +176,6 @@ render(){
             <Hero hero="gastroHero">
                 <Banner title="Gastronomie" />
             </Hero>
-
             <section className="home">
                 <Title title="Mit unseren Menüs zu einem kulinarischen Kinoerlebnis!" />
                 Wir haben für dich unsere beliebtesten Gastronomie-Artikel in einigen Menüs zusammengestellt. So sparst du im Vergleich zum Einzelkauf bis zu 17 %.
@@ -255,7 +254,7 @@ render(){
                 <br />
                 <Title title="Menüs" />
 
-                <div className="gastro-menus">
+                <div className="gastro-menus" id="menues">
                     {menuAddButton}
                 </div>
             </section>

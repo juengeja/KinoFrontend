@@ -13,7 +13,11 @@ export default class SingleMovie extends Component {
         };
     }
     static contextType = MovieContext;
-    //componentDidMount(){}
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+      }
+
     render() {
         const { getMovie } = this.context;
         const movie = getMovie(this.state.slug);

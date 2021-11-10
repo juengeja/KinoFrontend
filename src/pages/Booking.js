@@ -35,6 +35,10 @@ class Booking extends Component {
         }
     };
 
+    componentDidMount(){
+        window.scrollTo(0, 0)
+    }
+
     handleRemove = (id) => {
         this.props.removeAll(id);
     }

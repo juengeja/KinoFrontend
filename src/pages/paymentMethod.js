@@ -5,6 +5,7 @@ import Title from '../components/Title';
 import payment from '../images/payment.png'
 
 export default function paymentMethod() {
+
     return (
         <>
             <Hero hero="programHero">

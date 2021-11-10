@@ -9,6 +9,9 @@ import axios from 'axios';
 
 class ShoppingCart extends Component {
 
+    componentDidMount(){
+        window.scrollTo(0, 0)
+    }
     
     removeReservtion(reservationID) {
     let url = 'http://5.45.107.109:4000/api/remove/' + reservationID;
