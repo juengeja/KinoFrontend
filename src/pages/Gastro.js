@@ -6,10 +6,10 @@ import axios from 'axios';
 import { addToCart, addItem } from '../components/actions/storeActions';
 import ScrollButton from '../components/ScrollButton';
 
-import M1 from "../images/Menu (1).jpg";
-import M2 from"../images/Menu (2).png";
-import M3 from"../images/Menu (3).png";
-import M5 from"../images/Menu (5).png";
+import KiddyPack from "../images/Menu (1).jpg";
+import PartnerMenu from"../images/Menu (2).png";
+import BestsellerMenu from"../images/Menu (3).png";
+import BlockbusterMenu from"../images/Menu (5).png";
 import { connect } from 'react-redux';
 
 class Gastro extends Component {
@@ -93,19 +93,19 @@ class Gastro extends Component {
 
         menus:[
             {
-                img:  M1,
+                img: KiddyPack,
                 name: 'Kiddy Pack'
             },
             {
-                img:M2,
+                img: PartnerMenu,
                 name: 'Partner Menu'
             },
             {
-                img: M3,
+                img: BestsellerMenu,
                 name: 'Bestseller Menu'
             },
             {
-                img: M5,
+                img: BlockbusterMenu,
                 name: 'Blockbuster Menu'
             },
 
@@ -117,11 +117,12 @@ class Gastro extends Component {
       }
 
     handleAdd = (e) =>{
-      
-            axios.post('http://5.45.107.109:4000/api/menue', e.target.value)
+      this.props.items[this.props.items.length - 1].menu = e.target.value
+      let newBooking = this.props.items[this.props.items.length - 1].menu = e.target.value
+            axios.post('http://5.45.107.109:4000/api/menu', newBooking)
               .then(res => {
                 if (res.data != null) {
-      
+                  console.log(res.data)
                   if (res.data.bookingStatus === "reserved") {
                     
                     if (!this.props.items.length) {
@@ -146,13 +147,13 @@ class Gastro extends Component {
 
 render(){
 
-    let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ?
+    let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null ?
     (
         this.state.menus.map(item => {
             return (
                 <>
                 <div className="gastro-menus-container">
-                    <img src={item.img} />
+                    <img src={item.img} alt={item.img} />
                     <button className="btn-primary gastro-menu-link" onClick={this.handleAdd} value={item.name}>Hinzufügen</button>   
                 </div>
                 </>
@@ -165,7 +166,7 @@ render(){
             return (
                 <>
                 <div className="gastro-menus-container">
-                    <img src={item.img} />
+                    <img src={item.img} alt={item.img}/>
                 </div>
                 </>
             );

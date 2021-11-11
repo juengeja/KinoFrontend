@@ -58,7 +58,7 @@ export default function paymentMethod() {
                     < br />
                 </div>
 
-                <img src={payment} />
+                <img src={payment} alt={payment} />
 
             </section>
             <ScrollButton />

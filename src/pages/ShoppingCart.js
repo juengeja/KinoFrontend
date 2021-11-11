@@ -8,6 +8,11 @@ import Banner from '../components/Banner';
 import axios from 'axios';
 import ScrollButton from '../components/ScrollButton';
 
+import KiddyPack from "../images/Menu (1).jpg";
+import PartnerMenu from"../images/Menu (2).png";
+import BestsellerMenu from"../images/Menu (3).png";
+import BlockbusterMenu from"../images/Menu (5).png";
+
 class ShoppingCart extends Component {
 
     componentDidMount(){
@@ -29,6 +34,30 @@ class ShoppingCart extends Component {
             alert("Ein Fehler ist aufgetreten")
           }
       })
+  }
+
+  showMenu(){
+      if(this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null){
+          let booking = this.props.items[this.props.items.length - 1]
+        return (
+            <>
+                <li class="li-container" >
+                    <div class="cart-entry-img">
+                        <img src={booking.menu} alt={booking.menu} width="100%" />
+                    </div>
+
+                    <div className="cart-entry-details">
+                        <h6 className="title">{booking.menu}</h6>               
+                    </div>
+                    <div class="cart-entry-buttons">
+                        <button className="btn-primary" onClick={() => { this.removeMenu(booking.bookingID) }}>Löschen</button>
+                    </div>
+                </li>
+            </>
+        )
+      }else{
+          return null
+      }
   }
 
     render() {
@@ -77,7 +106,7 @@ class ShoppingCart extends Component {
 
 
         let showRecipe = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ? <><h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6><Recipe /></> : null
-        let menu = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ? <><h6>Hinzugefügtes Menü: {this.props.items[this.props.items.length - 1].menue}</h6></> : null
+        let menu = this.showMenu()
      
         return (
             <>

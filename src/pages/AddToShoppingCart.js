@@ -141,8 +141,9 @@ class AddToShoppingCart extends Component {
     let room = newEvent.seatingTemplateInfo.eventRoomID
 
     SeatArr.map(seat => {
-      if (seat[1].booked)
+      if (seat[1].booked){
         booked = [...booked, seat[0]]
+      }
     })
 
     this.setState({
