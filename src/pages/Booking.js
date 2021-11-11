@@ -122,6 +122,24 @@ class Booking extends Component {
     }
 }
 
+showMenu() {
+    if (this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null) {
+        let booking = this.props.items[this.props.items.length - 1]
+
+        return (
+            <>
+                <li class="booking-shoppingcart" >
+                    <div className="booking-cart-entry-container">
+                        <h6 className="booking_title">{booking.menu.replace(/([A-Z])/g, ' $1').trim()}</h6>
+                    </div>
+                </li>
+            </>
+        )
+    } else {
+        return null
+    }
+}
+
     render() {
         let ShoppingCart = this.props.items.length ?
             (
@@ -150,6 +168,8 @@ class Booking extends Component {
             (
                 <h6>Kein Film im Warenkorb</h6>
             )
+
+            let menu = this.showMenu()
 
         return (
             <>
@@ -205,6 +225,7 @@ class Booking extends Component {
                                 <FaShoppingCart /> Bestellübersicht
                             </div>
                             {ShoppingCart}
+                            {menu}
                             {this.props.items.length ? <h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6> : null}
                             <button className="booking-btn_100" onClick={() => this.props.history.push('/shoppingCart')}>Zurück zum Warenkorb</button>
                             <button class="booking-btn_100" type="submit">Kostenpflichtig bestellen</button>

@@ -1343,8 +1343,9 @@ text-align: center;
 .gastro-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 25px 0;
+  margin-bottom: 80px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
 }
   
 .gastro-table thead tr {
