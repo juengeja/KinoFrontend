@@ -254,11 +254,12 @@ render(){
                 </table>
                 <br />
                 <br />
-                <Title title="Menüs" />
-
+                <Title title="Menüs" />  
                 <div className="gastro-menus" id="menues">
                     {menuAddButton}
                 </div>
+                <br />
+                <h6 align="center">Preise der Menüs sind im Kino 10% teurer </h6>
             </section>
 
           <ScrollButton />

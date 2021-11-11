@@ -36,6 +36,23 @@ class ShoppingCart extends Component {
       })
   }
 
+  removeMenu(menu) {
+    let url = 'http://5.45.107.109:4000/api/remove/' + menu;
+    axios.put(url)
+    .then(res => {
+        if (res.data != null) {
+            if (res.data.bookingStatus === "reserved") {
+                this.props.items[this.props.items.length-1] = res.data
+                this.props.history.push('/shoppingCart');
+            } else {
+                alert('Fehler')
+            }
+          } else {
+            alert("Ein Fehler ist aufgetreten")
+          }
+      })
+  }
+
   showMenu(){
       if(this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null){
           let booking = this.props.items[this.props.items.length - 1]
@@ -50,7 +67,7 @@ class ShoppingCart extends Component {
                         <h6 className="title">{booking.menu}</h6>               
                     </div>
                     <div class="cart-entry-buttons">
-                        <button className="btn-primary" onClick={() => { this.removeMenu(booking.bookingID) }}>Löschen</button>
+                        <button className="btn-primary" onClick={() => { this.removeMenu(booking.menu) }}>Löschen</button>
                     </div>
                 </li>
             </>

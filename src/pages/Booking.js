@@ -154,7 +154,7 @@ class Booking extends Component {
         return (
             <>
 
-                <Hero hero='programHero'>
+                <Hero hero='bookingHero'>
                     <Banner title="Buchung" />
                 </Hero>
 

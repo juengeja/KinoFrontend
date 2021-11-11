@@ -9,7 +9,7 @@ export default function paymentMethod() {
 
     return (
         <>
-            <Hero hero="programHero">
+            <Hero hero="paymentHero">
                 <Banner title="Zahlungsmittel" />
             </Hero>
 
