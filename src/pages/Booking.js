@@ -36,7 +36,7 @@ class Booking extends Component {
         }
     };
 
-    componentDidMount(){
+    componentDidMount() {
         window.scrollTo(0, 0)
     }
 
@@ -90,59 +90,59 @@ class Booking extends Component {
 
         if (!this.state.customerInfo.dateOfBirth.length) {
             alert('Geburtstag wählen')
-        }else{
+        } else {
 
-        this.setState({showWaitingPopup: !this.state.showWaitingPopup})
+            this.setState({ showWaitingPopup: !this.state.showWaitingPopup })
 
-        var booking = this.props.items[this.props.items.length - 1]
-        for (var i = 0; i < booking.reservations.length; i++) {
-            booking.customerInfo = this.state.customerInfo
-            booking.paymentMethod = this.state.paymentMethod
-        }
+            var booking = this.props.items[this.props.items.length - 1]
+            for (var i = 0; i < booking.reservations.length; i++) {
+                booking.customerInfo = this.state.customerInfo
+                booking.paymentMethod = this.state.paymentMethod
+            }
 
-        axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
-            .then(res => {
-                if (res.data != null) {
+            axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
+                .then(res => {
+                    if (res.data != null) {
                         console.log(res.data)
-                    if (res.data.bookingStatus === "paid") {
-                        this.handleRemove()
-                        this.setState({
-                            showSuccessfulPopup: !this.state.showSuccessfulPopup
-                        })
+                        if (res.data.bookingStatus === "paid") {
+                            this.handleRemove()
+                            this.setState({
+                                showSuccessfulPopup: !this.state.showSuccessfulPopup
+                            })
+                        } else {
+                            this.handleRemove()
+                            this.setState({
+                                showErrorPopup: !this.state.showErrorPopup
+                            })
+                        }
                     } else {
-                        this.handleRemove()
-                        this.setState({
-                            showErrorPopup: !this.state.showErrorPopup
-                        })
+                        alert("Ein Fehler ist aufgetreten")
                     }
-                } else {
-                    alert("Ein Fehler ist aufgetreten")
-                }
-            })
+                })
+        }
     }
-}
 
-showMenu() {
-    if (this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null) {
-        let booking = this.props.items[this.props.items.length - 1]
+    showMenu() {
+        if (this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null) {
+            let booking = this.props.items[this.props.items.length - 1]
 
-        return (
-            <>
-                <li class="booking-shoppingcart" >
-                    <div className="booking-cart-entry-container">
-                        <h6 className="booking_title">{booking.menu.replace(/([A-Z])/g, ' $1').trim()}</h6>
-                    </div>
-                </li>
-            </>
-        )
-    } else {
-        return null
+            return (
+                <>
+                    <li class="booking-shoppingcart" >
+                        <div className="booking-cart-entry-container">
+                            <h6 className="booking_title">{booking.menu.replace(/([A-Z])/g, ' $1').trim()}</h6>
+                        </div>
+                    </li>
+                </>
+            )
+        } else {
+            return null
+        }
     }
-}
 
-    render() {
-        let ShoppingCart = this.props.items.length ?
-            (
+    showMovies() {
+        if (this.props.items.length) {
+            return (
                 this.props.items[this.props.items.length - 1].reservations.map(reservation => {
 
                     let seats = reservation.seats.join(', ')
@@ -163,13 +163,15 @@ showMenu() {
                         </>
                     )
                 })
-
-            ) :
-            (
+            )
+        } else {
+            return (
                 <h6>Kein Film im Warenkorb</h6>
             )
+        }
+    }
 
-            let menu = this.showMenu()
+    render() {
 
         return (
             <>
@@ -224,8 +226,8 @@ showMenu() {
                             <div class="headline">
                                 <FaShoppingCart /> Bestellübersicht
                             </div>
-                            {ShoppingCart}
-                            {menu}
+                            {this.showMovies()}
+                            {this.showMenu()}
                             {this.props.items.length ? <h6>Gesamtsumme: {this.props.items[this.props.items.length - 1].totalPrice}€</h6> : null}
                             <button className="booking-btn_100" onClick={() => this.props.history.push('/shoppingCart')}>Zurück zum Warenkorb</button>
                             <button class="booking-btn_100" type="submit">Kostenpflichtig bestellen</button>
@@ -245,7 +247,6 @@ showMenu() {
 const mapStateToProps = (state) => {
     return {
         items: state.addedItems,
-        //addedItems: state.addedItems
     }
 }
 const mapDispatchToProps = (dispatch) => {
