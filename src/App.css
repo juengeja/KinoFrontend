@@ -710,6 +710,13 @@ h6 {
     margin: auto;
     margin-top: 5rem
   }
+  .cart-entry-buttons-menu{
+    width: 20%;
+    float: right;
+    padding: 1rem;
+    margin: auto;
+    margin-top: 2rem
+  }
 }
 
 .title{

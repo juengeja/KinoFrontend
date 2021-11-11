@@ -8,10 +8,10 @@ import Banner from '../components/Banner';
 import axios from 'axios';
 import ScrollButton from '../components/ScrollButton';
 
-import KiddyPack from "../images/Menu (1).jpg";
-import PartnerMenu from"../images/Menu (2).png";
-import BestsellerMenu from"../images/Menu (3).png";
-import BlockbusterMenu from"../images/Menu (5).png";
+import KiddyPack from "../images/KiddyPack.png";
+import PartnerMenu from"../images/PartnerMenu.png";
+import BestsellerMenu from"../images/BestsellerMenu.png";
+import BlockbusterMenu from"../images/BlockbusterMenu.png";
 
 class ShoppingCart extends Component {
 
@@ -36,9 +36,8 @@ class ShoppingCart extends Component {
       })
   }
 
-  removeMenu(menu) {
-    let url = 'http://5.45.107.109:4000/api/remove/' + menu;
-    axios.put(url)
+  removeMenu(booking) {
+    axios.put('http://5.45.107.109:4000/api/remove/menu', booking)
     .then(res => {
         if (res.data != null) {
             if (res.data.bookingStatus === "reserved") {
@@ -56,18 +55,31 @@ class ShoppingCart extends Component {
   showMenu(){
       if(this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null){
           let booking = this.props.items[this.props.items.length - 1]
+
+          let imgsrc = ''
+
+          if (booking.menu === 'KiddyPack'){
+              imgsrc = KiddyPack
+          }else if (booking.menu === 'BestsellerMenu'){
+            imgsrc = BestsellerMenu
+          }else if (booking.menu === 'BlockbusterMenu'){
+            imgsrc = BlockbusterMenu
+           } else if (booking.menu === 'PartnerMenu'){
+            imgsrc = PartnerMenu
+            }
+
         return (
             <>
                 <li class="li-container" >
                     <div class="cart-entry-img">
-                        <img src={booking.menu} alt={booking.menu} width="100%" />
+                        <img src={imgsrc} alt={booking.menu} width="100%" />
                     </div>
 
                     <div className="cart-entry-details">
-                        <h6 className="title">{booking.menu}</h6>               
+                        <h6 className="title">{booking.menu.replace(/([A-Z])/g, ' $1').trim()}</h6>               
                     </div>
-                    <div class="cart-entry-buttons">
-                        <button className="btn-primary" onClick={() => { this.removeMenu(booking.menu) }}>Löschen</button>
+                    <div class="cart-entry-buttons-menu">
+                        <button className="btn-primary" onClick={() => { this.removeMenu(booking) }}>Löschen</button>
                     </div>
                 </li>
             </>
@@ -78,6 +90,7 @@ class ShoppingCart extends Component {
   }
 
     render() {
+        console.log(this.props.items[this.props.items.length - 1])
         let addedItems = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length ?
             (
                 this.props.items[this.props.items.length - 1].reservations.map(reservation => {

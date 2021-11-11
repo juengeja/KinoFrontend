@@ -3,13 +3,13 @@ import Hero from '../components/Hero'
 import Banner from '../components/Banner';
 import Title from '../components/Title';
 import axios from 'axios';
-import { addToCart, addItem } from '../components/actions/storeActions';
+import { addToCart, addItem, removeAll } from '../components/actions/storeActions';
 import ScrollButton from '../components/ScrollButton';
 
-import KiddyPack from "../images/Menu (1).jpg";
-import PartnerMenu from"../images/Menu (2).png";
-import BestsellerMenu from"../images/Menu (3).png";
-import BlockbusterMenu from"../images/Menu (5).png";
+import KiddyPack from "../images/KiddyPack.png";
+import PartnerMenu from"../images/PartnerMenu.png";
+import BestsellerMenu from"../images/BestsellerMenu.png";
+import BlockbusterMenu from"../images/BlockbusterMenu.png";
 import { connect } from 'react-redux';
 
 class Gastro extends Component {
@@ -94,48 +94,48 @@ class Gastro extends Component {
         menus:[
             {
                 img: KiddyPack,
-                name: 'Kiddy Pack'
+                name: 'KiddyPack'
             },
             {
                 img: PartnerMenu,
-                name: 'Partner Menu'
+                name: 'PartnerMenu'
             },
             {
                 img: BestsellerMenu,
-                name: 'Bestseller Menu'
+                name: 'BestsellerMenu'
             },
             {
                 img: BlockbusterMenu,
-                name: 'Blockbuster Menu'
+                name: 'BlockbusterMenu'
             },
 
         ]
     };
 
     componentDidMount() {
-        window.scrollTo(0, 0)
+      window.scrollTo(0, 0)
       }
+
+    handleRemove = (id) => {
+      this.props.removeAll(id);
+    }
 
     handleAdd = (e) =>{
       this.props.items[this.props.items.length - 1].menu = e.target.value
-      let newBooking = this.props.items[this.props.items.length - 1].menu = e.target.value
-            axios.post('http://5.45.107.109:4000/api/menu', newBooking)
+      let newBooking = this.props.items[this.props.items.length - 1]
+      console.log(this.props.items)
+            axios.put('http://5.45.107.109:4000/api/menu', newBooking)
               .then(res => {
                 if (res.data != null) {
                   console.log(res.data)
                   if (res.data.bookingStatus === "reserved") {
                     
-                    if (!this.props.items.length) {
-                      
+                      this.handleRemove()
                       let entry = res.data
                       this.props.addItem(entry);
                       this.props.addToCart(entry.id);
-                    } else {
-                      this.props.items[0] = res.data
-                      this.props.addToCart(this.props.items[0].id);
-                    }
-                    
-                    this.props.history.push('/shoppingCart')
+                      this.props.history.push('/shoppingCart');
+
                   } else {
                     alert("Ein Fehler ist aufgetreten")
                   }
@@ -147,7 +147,7 @@ class Gastro extends Component {
 
 render(){
 
-    let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu !== null ?
+    let menuAddButton = this.props.items.length && this.props.items[this.props.items.length - 1].reservations.length && this.props.items[this.props.items.length - 1].menu === null ?
     (
         this.state.menus.map(item => {
             return (
@@ -176,7 +176,7 @@ render(){
     return (
         <>
             <Hero hero="gastroHero">
-                <Banner title="Gastronomie" />
+                <Banner title="Gastronomie"/>
             </Hero>
             <section className="home">
                 <Title title="Mit unseren Menüs zu einem kulinarischen Kinoerlebnis!" />
@@ -254,12 +254,11 @@ render(){
                 </table>
                 <br />
                 <br />
-                <Title title="Menüs" />  
+                <Title title="Menüs" subtitle="Bestelle zum Ticket ein Menü online dazu und spare 10%"/>  
                 <div className="gastro-menus" id="menues">
                     {menuAddButton}
                 </div>
                 <br />
-                <h6 align="center">Preise der Menüs sind im Kino 10% teurer </h6>
             </section>
 
           <ScrollButton />
@@ -278,6 +277,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
       addToCart: (id) => { dispatch(addToCart(id)) },
       addItem: (id) => { dispatch(addItem(id)) },
+      removeAll: (id) => { dispatch(removeAll(id)) }
     }
   }
 
