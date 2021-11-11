@@ -49,7 +49,7 @@ class AddToShoppingCart extends Component {
     return tempItems;
   }
 
-  handleSubmit(entry) {
+  handleSubmit(entry,quickCheckoutValue) {
     if (entry.seats === '') {
       alert('Es wurde kein Sitzplatz ausgewählt')
     } else {
@@ -57,6 +57,7 @@ class AddToShoppingCart extends Component {
       this.setState({showWaitingPopup: !this.state.showWaitingPopup})
 
       const seat_reservation_post = {
+        quickCheckout: quickCheckoutValue,
         bookingInfo: entry.bookingID,
         reservationID: entry.reservationID,
         showEventInfo: entry.eventID,
@@ -70,7 +71,7 @@ class AddToShoppingCart extends Component {
             if (res.data.bookingStatus === "reserved") {
               
               if (!this.props.items.length) {
-                
+                console.log(res.data)
                 entry = res.data
                 this.props.addItem(entry);
                 this.props.addToCart(entry.id);
@@ -78,14 +79,14 @@ class AddToShoppingCart extends Component {
                 this.props.items[0] = res.data
                 this.props.addToCart(this.props.items[0].id);
               }
-              
-              this.setState({
-                showSuccessfulPopup: !this.state.showSuccessfulPopup,
-              })
+
+              if(quickCheckoutValue){
+                this.props.history.push('/booking')
+              } else{
+              this.setState({showSuccessfulPopup: !this.state.showSuccessfulPopup})
+            }
             } else {
-              this.setState({
-                showErrorPopup: !this.state.showErrorPopup
-              })
+              this.setState({showErrorPopup: !this.state.showErrorPopup})
             }
           } else {
             alert("Ein Fehler ist aufgetreten")
@@ -93,47 +94,6 @@ class AddToShoppingCart extends Component {
         })
     }
   }
-
-  handleSubmitQuick(entry) {
-    if (entry.seats === '') {
-      alert('Es wurde kein Sitzplatz ausgewählt')
-    } else {
-
-      this.setState({showWaitingPopup: !this.state.showWaitingPopup})
-
-      const seat_reservation_post = {
-        quickCheckout: true,
-        bookingInfo: entry.bookingID,
-        reservationID: entry.reservationID,
-        showEventInfo: entry.eventID,
-        seats: entry.seats
-      }
-
-      axios.post('http://5.45.107.109:4000/api/reservation', seat_reservation_post)
-        .then(res => {
-          if (res.data != null) {
-
-            if (res.data.bookingStatus === "reserved") {
-
-              if (!this.props.items.length) {
-                entry = res.data
-                this.props.addItem(entry);
-                this.props.addToCart(entry.id);
-              } else {
-                this.props.items[0] = res.data
-                this.props.addToCart(this.props.items[0].id);
-              }
-              this.props.history.push('/booking');
-            } else {
-              alert('Fehler')
-            }
-          } else {
-            alert("Ein Fehler ist aufgetreten")
-          }
-        })
-    }
-  }
-
 
   handleEventPicker(newEvent) {
     let SeatArr = Object.entries(newEvent.seatingTemplateInfo.seatMap)
@@ -312,7 +272,7 @@ class AddToShoppingCart extends Component {
               <SeatMatrix />
 
               <button onClick={() => { this.handleSubmit(tempEntry) }} class="booking-btn">Zum Warenkorb hinzufügen</button>
-              <button onClick={() => { this.handleSubmitQuick(tempEntry) }} class="booking-btn">Direkt zur Kasse</button>
+              <button onClick={() => { this.handleSubmit(tempEntry, true) }} class="booking-btn">Direkt zur Kasse</button>
             </>
           }
 
