@@ -660,6 +660,7 @@ h6 {
 }
 
 .li-container{
+  width: 100%;
   justify-content: center;
   display: inline-block;
   background-image: url(./images/ticket-bg.jpg);
