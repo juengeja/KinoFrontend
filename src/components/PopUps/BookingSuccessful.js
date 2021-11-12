@@ -7,7 +7,7 @@ export default class BookingSuccessful extends Component {
             <div className='popup'>
                 <div className='popup_inner'>
                     <h6>Vielen Dank für Ihre Bestellung. Sie werden in Kürze eine Bestätigungs-Email erhalten.</h6>
-                    <Link to='/' className="btn-primary">Zum Startseite</Link>
+                    <Link to='/' className="btn-primary">Zur Startseite</Link>
                 </div>
             </div>
         );

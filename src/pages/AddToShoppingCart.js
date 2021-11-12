@@ -67,11 +67,9 @@ class AddToShoppingCart extends Component {
       axios.post('http://5.45.107.109:4000/api/reservation', seat_reservation_post)
         .then(res => {
           if (res.data != null) {
-            console.log(res.data)
             if (res.data.bookingStatus === "reserved") {
               
               if (!this.props.items.length) {
-                console.log(res.data)
                 entry = res.data
                 this.props.addItem(entry);
                 this.props.addToCart(entry.id);

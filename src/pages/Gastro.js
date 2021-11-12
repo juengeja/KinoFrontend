@@ -48,11 +48,9 @@ class Gastro extends Component {
   handleAdd = (e) => {
     this.props.items[this.props.items.length - 1].menu = e.target.value
     let newBooking = this.props.items[this.props.items.length - 1]
-    console.log(this.props.items)
     axios.put('http://5.45.107.109:4000/api/menu', newBooking)
       .then(res => {
         if (res.data != null) {
-          console.log(res.data)
           if (res.data.bookingStatus === "reserved") {
             this.handleRemove()
             let entry = res.data
