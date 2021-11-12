@@ -2,15 +2,16 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
-import { Link } from 'react-router-dom';
 import { FaInfo, FaCreditCard, FaShoppingCart } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 import { removeAll } from '../components/actions/storeActions'
-import loadingGif from '../images/gif/small-loading-arrow.gif';
 import ScrollButton from '../components/ScrollButton';
+import WaitingPopup from '../components/PopUps/Waiting'
+import BookingSuccessfulPopup from '../components/PopUps/BookingSuccessful'
+import BookingErrorPopup from '../components/PopUps/BookingError'
 
 class Booking extends Component {
     constructor(props) {
@@ -102,6 +103,7 @@ class Booking extends Component {
 
             axios.put('http://5.45.107.109:4000/api/reservation/successfulpayment', booking)
                 .then(res => {
+                    console.log(res.data)
                     if (res.data != null) {
                         console.log(res.data)
                         if (res.data.bookingStatus === "paid") {
@@ -235,8 +237,8 @@ class Booking extends Component {
                         </div>
                     </form>
                     {this.state.showWaitingPopup ? <WaitingPopup /> : null}
-                    {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
-                    {this.state.showErrorPopup ? <ErrorPopup /> : null}
+                    {this.state.showSuccessfulPopup ? <BookingSuccessfulPopup /> : null}
+                    {this.state.showErrorPopup ? <BookingErrorPopup /> : null}
                 </div>
                 <ScrollButton />
             </>
@@ -255,44 +257,3 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Booking)
-
-class SuccessfulPopup extends Component {
-    render() {
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <h6>Vielen Dank für Ihre Bestellung. Sie werden in Kürze eine Bestätigungs-Email erhalten.</h6>
-                    <Link to='/' className="btn-primary">Zum Startseite</Link>
-                </div>
-            </div>
-        );
-    }
-}
-
-class ErrorPopup extends Component {
-    render() {
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <h6>Leider ist etwas schiefgelaufen. Bitte versuchen sie es erneut</h6>
-                    <Link to='/' className="btn-primary">Zur Startseite</Link>
-                </div>
-            </div>
-        );
-    }
-}
-
-class WaitingPopup extends Component {
-    render() {
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <div className="loading" data-testid="loading-1">
-                        <h4>Daten werden verarbeitet...</h4>
-                        <img src={loadingGif} alt="" />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}

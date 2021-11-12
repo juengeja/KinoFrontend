@@ -5,10 +5,10 @@ import Banner from '../components/Banner';
 import { connect } from 'react-redux';
 import { addToCart, addItem, removeItem } from '../components/actions/storeActions';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import {HashLink} from 'react-router-hash-link';
-import loadingGif from '../images/gif/small-loading-arrow.gif';
 import ScrollButton from '../components/ScrollButton';
+import AddToCartSuccessfulPopup from '../components/PopUps/AddToCartSuccessful'
+import AddToCartErrorPopup from '../components/PopUps/AddToCartError'
+import WaitingPopup from '../components/PopUps/Waiting'
 
 class AddToShoppingCart extends Component {
   constructor(props) {
@@ -271,14 +271,14 @@ class AddToShoppingCart extends Component {
             <>
               <SeatMatrix />
 
-              <button onClick={() => { this.handleSubmit(tempEntry) }} class="booking-btn">Zum Warenkorb hinzufügen</button>
+              <button onClick={() => { this.handleSubmit(tempEntry, false) }} class="booking-btn">Zum Warenkorb hinzufügen</button>
               <button onClick={() => { this.handleSubmit(tempEntry, true) }} class="booking-btn">Direkt zur Kasse</button>
             </>
           }
 
           {this.state.showWaitingPopup ? <WaitingPopup /> : null}
-          {this.state.showSuccessfulPopup ? <SuccessfulPopup /> : null}
-          {this.state.showErrorPopup ? <ErrorPopup /> : null}
+          {this.state.showSuccessfulPopup ? <AddToCartSuccessfulPopup /> : null}
+          {this.state.showErrorPopup ? <AddToCartErrorPopup /> : null}
         </div>
         <ScrollButton />
       </>
@@ -303,53 +303,6 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddToShoppingCart)
 
-class SuccessfulPopup extends Component {
-  render() {
-    return (
-      <div className='popup'>
-        <div className='popup_inner'>
-          <h6>Der Film wurde erfolgreich zum Warenkorb hinzugefügt!</h6>
-          <Link to='/shoppingCart' className="btn-primary">Zum Warenkorb</Link>
-          <h3 />
-          <HashLink to='/gastro/#menues' className="btn-primary">Menü hinzufügen</HashLink>
-          <h3 />
-          <Link to='/program' className="btn-primary">Weiteren Film hinzufügen</Link>
-        </div>
-      </div>
-    );
-  }
-}
 
-class ErrorPopup extends Component {
-
-  render() {
-    function refreshPage() {
-      window.location.reload();
-    }
-    return (
-      <div className='popup'>
-        <div className='popup_inner'>
-          <h6>Ihr gewählter Sitzplatz ist leider bereits vergeben</h6>
-          <button onClick={refreshPage} className="btn-primary">Bitte wählen sie einen anderen</button>
-        </div>
-      </div>
-    );
-  }
-}
-
-class WaitingPopup extends Component {
-  render() {
-      return (
-          <div className='popup'>
-              <div className='popup_inner'>
-                  <div className="loading" data-testid="loading-1">
-                        <h4>Daten werden verarbeitet...</h4>
-                        <img src={loadingGif} alt="" />
-                    </div>
-              </div>
-          </div>
-      );
-  }
-}
 
 
